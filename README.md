@@ -54,3 +54,8 @@ Here's an example by adding each stage one at a time.
 `python blotchmap.py -S 999 -D 12 8 60 -M 10 -J 3 3 -I 100 -O bmapex4.png`
 ![example step 4](/example_images/bmapex4.png)
 
+
+A mosaic tile, or jagged rock type pattern can be created by greatly turning down the interpolation resolution.
+
+`python blotchmap.py -S 987654321 -D 30 20 25 -M 100 -J 5 0 -I 3 -O mosaicex.png`
+![mosaic example](/example_images/mosaicex.png)
