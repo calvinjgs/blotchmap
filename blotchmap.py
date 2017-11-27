@@ -430,14 +430,12 @@ def merge_random_nodes(hgrid, ngroups):
 		todo_groups.append([hgrid.node_array[ys[g],xs[g]],])
 		done_groups.append([])	
 
-	claimed = np.full(hgrid.shape, False, dtype=bool)
-	claimed[ys,xs] = True
 	turns_each = np.ones((ngroups,), dtype=int)
 	#in the future, turns_each can be set to differnt numbers for random sizes
 
 	def isclaimed(node):
 		for g in range(ngroups):
-			if node in done_groups[g] or node in todo_groups[g]: return True
+			if node in done_groups[g]: return True
 		return False
 
 	def isdone():
@@ -451,6 +449,7 @@ def merge_random_nodes(hgrid, ngroups):
 			for t in range(turns_each[g]):
 				if len(todo_groups[g]) == 0: break
 				node = todo_groups[g].pop(0)
+				if isclaimed(node): break
 				done_groups[g].append(node)
 				for e in range(len(node.edges)):
 					if not isclaimed(node.edges[e]):
